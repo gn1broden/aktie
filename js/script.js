@@ -29,8 +29,9 @@ const aktie = () => {
             document.querySelector('.output P').appendChild(text);
 
         }else{
+            document.querySelector('.output p').innerHTML = " ";
             let text = document.createTextNode("Någonting sket sig egghövve, gör om gör rätt!");
-            document.querySelector('.output').appendChild(text);
+            document.querySelector('.output p').appendChild(text);
         }
 
     }
@@ -38,6 +39,25 @@ const aktie = () => {
     form.addEventListener('submit',runEvent);
 }
 
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('time').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i; // add zero in front of numbers < 10
+    }
+    return i;
+}
+
 window.onload = function() {
     aktie();
+    startTime();
 } 
